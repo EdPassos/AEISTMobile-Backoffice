@@ -1,0 +1,31 @@
+@(restaurantes: List[Restaurante], restauranteForm: Form[Restaurante])
+
+@import helper._
+
+@main("Todo list") {
+    
+    <h1>@restaurantes.size() restaurante(s)</h1>
+    
+    <ul>
+        @for(restaurante <- restaurantes) {
+            <li>
+                @restaurante.name - @restaurante.description
+                
+                @form(routes.Application.deleteRestaurante(restaurante.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new restaurante</h2>
+    
+    @form(routes.Application.newRestaurante()) {
+        @inputText(restauranteForm("name"))
+        @inputText(restauranteForm("description"))
+        
+        <input type="submit" value="Create">
+        
+    }
+    
+}
