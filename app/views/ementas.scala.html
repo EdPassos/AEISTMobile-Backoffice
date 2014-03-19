@@ -1,0 +1,33 @@
+@(ementas: List[Ementa], ementaForm: Form[Ementa], restaurantes: Map[String,String])
+
+@import helper._
+
+@main("Todo list") {
+    
+    <h1>@ementas.size() ementa(s)</h1>
+    
+    <ul>
+        @for(ementa <- ementas) {
+            <li>
+                @ementa.description - @ementa.price - @ementa.restaurante.name
+                
+                @form(routes.Application.deleteEmenta(ementa.id)) {
+                    <input type="submit" value="Delete">
+                }
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new ementa</h2>
+    
+    @form(routes.Application.newEmenta()) {
+        @inputText(ementaForm("price"))
+        @inputText(ementaForm("description"))
+ 		@select(field = ementaForm("restaurante"), 
+ 				options(restaurantes))
+        
+        <input type="submit" value="Create">
+        
+    }
+    
+}
