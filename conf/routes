@@ -8,6 +8,10 @@ GET     /restaurantes           	controllers.Application.restaurantes()
 POST    /restaurantes            	controllers.Application.newRestaurante()
 POST    /restaurantes/:id/delete 	controllers.Application.deleteRestaurante(id: Long)
 
+GET     /ementas           			controllers.Application.ementas()
+POST    /ementas            		controllers.Application.newEmenta()
+POST    /ementas/:id/ementas 		controllers.Application.deleteEmenta(id: Long)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
